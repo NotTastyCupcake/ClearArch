@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using GoldenSocks.UtkService.ApplicationCore.Entities;
+using GoldenSocks.UtkService.ApplicationCore.Services;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +16,17 @@ namespace GoldenSocks.UtkService.Tests
         {
             // arrange
 
+            var timeLog = new TimeLog
+            {
+                Date = new DateTime(),
+                WorkingTimeHours = 1,
+                LastName = "Иванов"
+            };
+
+            var service = new TimeSheetSrvice();
+
             // act
-            bool result = service.TrackTime();
+            bool result = service.TrackTime(timeLog);
 
             // assert
             Assert.IsTrue(result);
@@ -26,14 +37,17 @@ namespace GoldenSocks.UtkService.Tests
         {
             // arrange
 
-            var period = new DateTime();
-            var workingTimeHours = 1;
-            var lastName = "";
+            var timeLog = new TimeLog
+            {
+                Date = DateTime.Today.AddDays(1),
+                WorkingTimeHours = 1,
+                LastName = "Иванов"
+            };
 
             var service = new TimeSheetSrvice();
 
             // act
-            bool result = service.TrackTime();
+            bool result = service.TrackTime(timeLog);
 
             // assert
             Assert.IsFalse(result);

@@ -1,5 +1,6 @@
 ﻿using GoldenSocks.UtkService.ApplicationCore.Entities;
 using GoldenSocks.UtkService.ApplicationCore.Services;
+using GoldenSocks.UtkService.WebAPI.ResourceModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,7 +15,7 @@ namespace GoldenSocks.UtkService.WebAPI.Controllers
     public class AuthController : ControllerBase
     {
         [HttpPost]
-        public IActionResult Login(Person person)
+        public IActionResult Login(LoginRequest person)
         {
             var authService = new AuthService();
 
