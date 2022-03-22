@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Infrastructure</AssemblyName>
+    <RootNamespace>GoldenSocks.UtkService.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+</Project>
