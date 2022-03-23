@@ -11,13 +11,15 @@ namespace GoldenSocks.UtkService.ApplicationCore.Services
     {
         public bool TrackTime(TimeLog timeLog)
         {
-            if (string.IsNullOrWhiteSpace(timeLog.LastName) 
-                || timeLog.Date > DateTime.Now )
-                return false;
+            bool isValidWorkingTimeHours = timeLog.WorkingTimeHours > 0 && timeLog.WorkingTimeHours <= 24;
+            bool isValidLastName = !string.IsNullOrWhiteSpace(timeLog.LastName) && UserSession.Sessions.Contains(timeLog.LastName);
+            bool isValidData = timeLog.Date < DateTime.Now;
 
-            TimeSheetSrviceSession.Sessions.Add(timeLog);
 
-            return true;
+            if (isValidWorkingTimeHours && isValidLastName && isValidData)
+            { return true; TimeSheetSrviceSession.Sessions.Add(timeLog); }
+            else
+            { return false; }
         }
     }
 

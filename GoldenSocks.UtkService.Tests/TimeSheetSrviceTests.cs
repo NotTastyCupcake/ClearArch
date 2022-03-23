@@ -11,16 +11,20 @@ namespace GoldenSocks.UtkService.Tests
 {
     public class TimeSheetSrviceTests
     {
-        [Test]
+        [TestCase("TestUser")]
         public void TrackTime_ShouldReturnTrue()
         {
             // arrange
+
+            var expectedLastName = "TestUser";
+
+            UserSession.Sessions.Add(expectedLastName);
 
             var timeLog = new TimeLog
             {
                 Date = new DateTime(),
                 WorkingTimeHours = 1,
-                LastName = "Иванов"
+                LastName = expectedLastName
             };
 
             var service = new TimeSheetSrvice();
@@ -32,16 +36,29 @@ namespace GoldenSocks.UtkService.Tests
             Assert.IsTrue(result);
         }
 
-        [Test]
-        public void TrackTime_ShouldReturnFalse()
+        // WorkingTimeHours = 25, - should return false 
+
+        [TestCase(-1, "")]
+        [TestCase(-1, null)]
+        [TestCase(-1, "TestUser")]
+        [TestCase(null, "")]
+        [TestCase(null, null)]
+        [TestCase(null, "TestUser")]
+        [TestCase(25, "")]
+        [TestCase(25, null)]
+        [TestCase(25, "TestUser")]
+        [TestCase(1, "")]
+        [TestCase(1, null)]
+        [TestCase(1, "TestUser")]
+        public void TrackTime_ShouldReturnFalse(int hourse, string lastName)
         {
             // arrange
 
             var timeLog = new TimeLog
             {
-                Date = DateTime.Today.AddDays(1),
-                WorkingTimeHours = 1,
-                LastName = "Иванов"
+                Date = new (),
+                WorkingTimeHours = hourse,
+                LastName = lastName
             };
 
             var service = new TimeSheetSrvice();
