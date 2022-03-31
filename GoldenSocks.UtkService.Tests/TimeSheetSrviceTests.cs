@@ -11,20 +11,21 @@ namespace GoldenSocks.UtkService.Tests
 {
     public class TimeSheetSrviceTests
     {
-        [TestCase("TestUser")]
-        public void TrackTime_ShouldReturnTrue()
+        [TestCase("Иванов")]
+        public void TrackTime_ShouldReturnTrue(string lastName)
         {
             // arrange
 
-            var expectedLastName = "TestUser";
 
-            UserSession.Sessions.Add(expectedLastName);
+            UserSession.Sessions.Add(lastName);
 
             var timeLog = new TimeLog
             {
                 Date = new DateTime(),
                 WorkingTimeHours = 1,
-                LastName = expectedLastName
+                LastName = lastName,
+                Comment = Guid.NewGuid().ToString(),
+                
             };
 
             var service = new TimeSheetSrvice();
@@ -56,9 +57,10 @@ namespace GoldenSocks.UtkService.Tests
 
             var timeLog = new TimeLog
             {
-                Date = new (),
+                Date = new(),
                 WorkingTimeHours = hourse,
-                LastName = lastName
+                LastName = lastName,
+                Comment = Guid.NewGuid().ToString()
             };
 
             var service = new TimeSheetSrvice();

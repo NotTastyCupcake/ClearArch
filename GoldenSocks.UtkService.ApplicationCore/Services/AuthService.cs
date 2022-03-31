@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GoldenSocks.UtkService.ApplicationCore.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GoldenSocks.UtkService.ApplicationCore.Services
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         public AuthService()
         {
@@ -20,14 +21,14 @@ namespace GoldenSocks.UtkService.ApplicationCore.Services
 
         public bool Login(string lastName)
         {
-            if(string.IsNullOrWhiteSpace(lastName))
+            if (string.IsNullOrWhiteSpace(lastName))
             {
                 return false;
             }
 
             bool isEmployeesExist = Employees.Contains(lastName);
 
-            if(isEmployeesExist)
+            if (isEmployeesExist)
             {
                 UserSession.Sessions.Add(lastName);
             }

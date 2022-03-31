@@ -5,8 +5,4 @@
     <RootNamespace>GoldenSocks.UtkService.ApplicationCore</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>

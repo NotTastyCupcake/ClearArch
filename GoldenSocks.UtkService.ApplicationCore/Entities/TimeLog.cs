@@ -10,7 +10,8 @@ namespace GoldenSocks.UtkService.ApplicationCore.Entities
     {
         public DateTime Date { get; set; }
         public int WorkingTimeHours { get; set; }
-
         public string LastName { get; set; }
+
+        public string Comment { get; set; }
     }
 }
