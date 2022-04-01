@@ -1,3 +1,5 @@
+using GoldenSocks.UtkService.ApplicationCore.Interfaces;
+using GoldenSocks.UtkService.ApplicationCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,7 +27,8 @@ namespace GoldenSocks.UtkService.WebAPI
         {
             //services.AddSingleton();
             //services.AddScoped();
-            //services.AddTransient();
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<ITimeSheetSrvice, TimeSheetSrvice>();
 
             services.AddControllersWithViews();
         }

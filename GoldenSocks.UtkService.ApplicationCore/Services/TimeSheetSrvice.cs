@@ -1,4 +1,5 @@
 ﻿using GoldenSocks.UtkService.ApplicationCore.Entities;
+using GoldenSocks.UtkService.ApplicationCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GoldenSocks.UtkService.ApplicationCore.Services
 {
-    public class TimeSheetSrvice
+    public class TimeSheetSrvice : ITimeSheetSrvice
     {
         public bool TrackTime(TimeLog timeLog)
         {
@@ -17,7 +18,7 @@ namespace GoldenSocks.UtkService.ApplicationCore.Services
 
 
             if (isValidWorkingTimeHours && isValidLastName && isValidData)
-            { return true; TimeSheetSrviceSession.Sessions.Add(timeLog); }
+            { TimeSheetSrviceSession.Sessions.Add(timeLog); return true; }
             else
             { return false; }
         }
